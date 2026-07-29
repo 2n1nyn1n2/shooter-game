@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://dqrfsdhmgq0no"]
+
+[ext_resource type="Script" uid="uid://cxalefryg73v6" path="res://gd/Player.gd" id="1_7j80i"]
+[ext_resource type="PackedScene" uid="uid://q6afqgmix4dq" path="res://gltf/Characters/Character_Soldier.gltf" id="2_5juvj"]
+[ext_resource type="PackedScene" uid="uid://owj7p0rjn05u" path="res://tscn/Bullet.tscn" id="2_7omxl"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g58rx"]
+
+[node name="Player" type="CharacterBody3D" unique_id=1115433370 groups=["player"]]
+script = ExtResource("1_7j80i")
+bullet_scene = ExtResource("2_7omxl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1597517493]
+shape = SubResource("CapsuleShape3D_g58rx")
+
+[node name="CamOrigin" type="Node3D" parent="." unique_id=1781984475]
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CamOrigin" unique_id=460805100]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+spring_length = 3.0
+
+[node name="Camera3D" type="Camera3D" parent="CamOrigin/SpringArm3D" unique_id=1176868584]
+
+[node name="QuaterniusModel" parent="." unique_id=1279170748 instance=ExtResource("2_5juvj")]
+transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0, -1, 0)
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="QuaterniusModel" unique_id=2001535285]
+root_node = NodePath("")
+
+[node name="Muzzle" type="Marker3D" parent="." unique_id=174948924]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1, -2.2448041)

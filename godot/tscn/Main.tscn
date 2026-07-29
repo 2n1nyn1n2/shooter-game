@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://bn6b80q25bhta"]
+
+[ext_resource type="Script" uid="uid://l2ehscg37vf3" path="res://gd/Main.gd" id="1_ewaw7"]
+[ext_resource type="PackedScene" uid="uid://bbvwi8wixutip" path="res://tscn/Enemy.tscn" id="2_8wxc5"]
+[ext_resource type="PackedScene" uid="uid://dqrfsdhmgq0no" path="res://tscn/Player.tscn" id="3_a7rub"]
+[ext_resource type="PackedScene" uid="uid://w7qk6afqfq5u" path="res://tscn/ui/PerformanceMonitorUI.tscn" id="4_cppny"]
+[ext_resource type="PackedScene" uid="uid://c8j2l5r6x4y3t" path="res://tscn/ui/Joystick.tscn" id="5_jboqg"]
+
+[sub_resource type="Environment" id="Environment_g58rx"]
+
+[sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_mjonn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g58rx"]
+albedo_color = Color(1, 0, 0, 1)
+
+[node name="Main" type="Node3D" unique_id=367464026]
+script = ExtResource("1_ewaw7")
+enemy_scene = ExtResource("2_8wxc5")
+
+[node name="Player" parent="." unique_id=332543417 instance=ExtResource("3_a7rub")]
+
+[node name="SpawnTimer" type="Timer" parent="." unique_id=672689325]
+autostart = true
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=634092420]
+
+[node name="ScoreLabel" type="Label" parent="HUD" unique_id=1687461457]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="PerformanceMonitorUI" parent="." unique_id=336613206 instance=ExtResource("4_cppny")]
+
+[node name="Joystick" parent="." unique_id=1747218257 instance=ExtResource("5_jboqg")]
+offset_left = -510.0
+offset_top = 256.0
+offset_right = -254.0
+offset_bottom = 512.0
+mouse_default_cursor_shape = 3
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1766562213]
+environment = SubResource("Environment_g58rx")
+camera_attributes = SubResource("CameraAttributesPhysical_mjonn")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=536679836]
+
+[node name="Map" type="Node3D" parent="." unique_id=1331652531]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Map" unique_id=171740848]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0)
+use_collision = true
+size = Vector3(1000, 1, 1000)
+material = SubResource("StandardMaterial3D_g58rx")
+
+[node name="SpawnPoints" type="Node3D" parent="." unique_id=287994778]
+
+[node name="Marker3D" type="Marker3D" parent="SpawnPoints" unique_id=161478544]

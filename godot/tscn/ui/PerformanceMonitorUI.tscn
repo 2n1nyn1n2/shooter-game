@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://w7qk6afqfq5u"]
+
+[ext_resource type="Script" uid="uid://dwrs607b4lbg" path="res://gd/ui/PerformanceMonitorUI.gd" id="1_iqsrs"]
+
+[node name="PerformanceMonitorUI" type="CanvasLayer" unique_id=336613206]
+script = ExtResource("1_iqsrs")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1327895605]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1758044291]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1386056525]
+layout_mode = 2
+
+[node name="FPSLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1935458468]
+unique_name_in_owner = true
+layout_mode = 2
+text = "FPSLabel"
+
+[node name="MemoryLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=213146874]
+unique_name_in_owner = true
+layout_mode = 2
+text = "MemoryLabel"
+
+[node name="DrawCallsLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=695717925]
+unique_name_in_owner = true
+layout_mode = 2
+text = "DrawCallsLabel"
+
+[node name="ObjectCountLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=888207093]
+unique_name_in_owner = true
+layout_mode = 2
+text = "ObjectCountLabel"
+
+[node name="VRAMLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=2112982676]
+unique_name_in_owner = true
+layout_mode = 2
+text = "VRAMLabel"
+
+[node name="NoteLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1397026591 groups=["note_label"]]
+unique_name_in_owner = true
+layout_mode = 2
+text = "."

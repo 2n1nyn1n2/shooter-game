@@ -1,0 +1,37 @@
+name: Update Live Site Link
+
+on:
+  push:
+    branches: [ main ]
+  repository_dispatch:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Replace placeholder with dynamic GitHub Pages URL
+        run: |
+          # Replaces the {{ PAGES_URL }} placeholder with the actual site URL
+          PAGES_URL="https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}"
+          sed -i "s|{{ PAGES_URL }}|${PAGES_URL}|g" README.md
+      - name: Replace Live Site link
+        run: |
+          TARGET_URL="https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}"
+          # Matches [view demo on web](...) regardless of what's inside the parentheses
+          sed -i -E "s|\[view demo on web\]\([^)]*\)|[view demo on web](${TARGET_URL})|g" README.md
+
+      - name: Commit changes if updated
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          if ! git diff --quiet; then
+            git commit -am "chore: update live site link in README"
+            git push
+          fi
